@@ -1,10 +1,16 @@
-def get_book_text(path_to_file):
-    with open(path_to_file) as f:
-        file_contents = f.read() # f is a file object
-    return file_contents
+from stats import *
+import sys
     
 def main():
-    print(get_book_text("/Users/torrancesemple/workspace/github.com/TorranceSemple/bookbot/books/frankenstein.txt"))
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    path = sys.argv[1]
+    text = get_book_text(path)
+    word_count = get_num_words(text)
+    char_dict = get_num_char(text)
+    get_report(char_dict, word_count, path)
+
 
 if __name__ == "__main__":
     main()
